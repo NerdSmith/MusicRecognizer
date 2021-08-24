@@ -1,6 +1,6 @@
 # MusicRecognizer
 
-##Music recognition application for windows  
+## Music recognition application for windows  
 ![alt-text](https://github.com/NerdSmith/MusicRecognizer/blob/master/screenshots/MR_v0.8.0.png?raw=true)
 
 You can choose from which of the devices the recording will be made.
