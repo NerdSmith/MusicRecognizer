@@ -1,0 +1,23 @@
+QMainWindow {
+    background-color: #fdfdfe;
+}
+QWidget {
+    font: 14pt "Leelawadee UI";
+}
+QGroupBox {
+    background-color: #eeeeee;
+    border: 0px;
+    border-radius: 15px;
+    padding-top: 4ex;
+}
+QGroupBox::title {
+        padding: 0 4ex;
+}
+QListView {
+    background-color: #eeeeee;
+}
+QFrame#device_listen_frame {
+    background-color: #eeeeee;
+    border: 0px;
+    border-radius: 15px;
+}
