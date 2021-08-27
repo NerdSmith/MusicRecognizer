@@ -7,7 +7,7 @@ from PySide6.QtGui import QPixmap, QImage
 from PySide6.QtWidgets import QMainWindow, QApplication
 from gui.ui_main_window import Ui_MainWindow
 from gui.history_list import HistoryListModel
-from definitions import MIN_IMAGE_SIZE, STYLES_FILE_PATH, NO_IMAGE_ICON, ICO_PATH
+from definitions import MIN_IMAGE_SIZE, STYLES_FILE_PATH, NO_IMAGE_ICON
 from util.qt_utils import get_qt_image_from_url
 
 
@@ -78,7 +78,7 @@ class MainWindow(QMainWindow):
 
     def update_history(self, new_history):
         self.history_model.set_history(new_history)
-        self.history_model.layoutChanged.emit()
+        self.reload_history_view()
 
     def reload_history_view(self):
         self.history_model.layoutChanged.emit()

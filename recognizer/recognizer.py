@@ -1,5 +1,4 @@
 import logging
-from pprint import pprint
 
 from ShazamAPI import Shazam
 from song import Song

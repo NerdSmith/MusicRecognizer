@@ -22,6 +22,7 @@ class Recorder(pyaudio.PyAudio):
             self.default_device = self.devices[0]
         except IndexError as e:
             logging.error("devices not found")
+            raise Exception("devices not found")
 
         logging.info("devices have been found")
 
