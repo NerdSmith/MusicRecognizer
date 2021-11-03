@@ -14,7 +14,7 @@ from PySide6 import QtCore, QtGui
 from PySide6.QtWidgets import QApplication, QPushButton, QFileDialog
 from PySide6.QtGui import QCloseEvent, QMouseEvent
 
-from definitions import UPDATE_RATE, WAITING_TIME, EXCERPT_PATH, RECORD_TIMOUT, RECOGNIZE_TIMOUT
+from definitions import UPDATE_RATE, WAITING_TIME, EXCERPT_PATH, RECORD_TIMEOUT, RECOGNIZE_TIMEOUT
 from gui import MainWindow
 from recorder import Recorder
 from recognizer import Recognizer
@@ -138,7 +138,7 @@ class ThreadManager:
                            name="record_th")
         record_th.start()
 
-        record_th.join(timeout=RECORD_TIMOUT)
+        record_th.join(timeout=RECORD_TIMEOUT)
         if record_th_wrapper.is_success and not record_th_wrapper.is_running:
             listen_btn_th_wrapper.btn_state = "Recognition"
         else:
@@ -154,7 +154,7 @@ class ThreadManager:
                               daemon=True,
                               name="recognize_th")
         recognize_th.start()
-        recognize_th.join(RECOGNIZE_TIMOUT)
+        recognize_th.join(RECOGNIZE_TIMEOUT)
         listen_btn_th_wrapper.terminate()
         if recognize_th_wrapper.is_success:
             song = recognize_th_wrapper.song
@@ -179,7 +179,7 @@ class RecognizerThWrapper:
     def run(self):
         try:
             with open(EXCERPT_PATH, mode='rb') as excerpt_data:
-                self.song = Recognizer.recognize(excerpt_data.read())
+                self.song = Recognizer.recognize_API(excerpt_data.read())
                 if self.song is not None:
                     self.is_success = True
                 else:
