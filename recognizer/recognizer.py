@@ -1,16 +1,16 @@
 import json
 import logging
 
-import requests
 from song import Song
+from util.api_utils import get_shazam_data
 
 
 class Recognizer:
     @staticmethod
     def recognize_API(music_bytes: bytes):
         try:
-            r = requests.post("https://nameless-sierra-10297.herokuapp.com/api/v1", files={"b_data": music_bytes})
-            song_data = json.loads(r.text)["data"]
+            shazam_data = get_shazam_data(music_bytes)
+            song_data = json.loads(shazam_data)["data"]
             song = Song(song_data[1]["track"]["title"],
                         song_data[1]["track"]["subtitle"],
                         f"{song_data[1]['track']['title']} - {song_data[1]['track']['subtitle']}",

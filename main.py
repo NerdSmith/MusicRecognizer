@@ -1,6 +1,8 @@
 from definitions import LOGFILE_PATH, HISTORY_FILE_PATH, ITEM_SELECTION_CODE, ICO_PATH
 import logging
 
+from util.api_utils import ping_host
+
 logging.basicConfig(filename=LOGFILE_PATH, filemode='w', level=logging.DEBUG)
 
 import sys
@@ -117,10 +119,25 @@ class MainWindowWrapper(MainWindow):
 
 
 class ThreadManager:
-    def __init__(self, recorder, main_window):
+    def __init__(self, recorder, main_window: MainWindowWrapper):
         self.recorder = recorder
         self.main_window = main_window
+        ping_block_th = Thread(target=self.ping_host_block_btn,
+                               args=(),
+                               daemon=True,
+                               name="ping_block")
+        ping_block_th.start()
         self.block = False
+
+    def ping_host_block_btn(self):
+        self.main_window.get_listen_btn().setEnabled(False)
+        ping_th = Thread(target=ping_host,
+                         args=(),
+                         daemon=True,
+                         name="ping_th")
+        ping_th.start()
+        ping_th.join()
+        self.main_window.get_listen_btn().setEnabled(True)
 
     def run_listen_th(self, listen_btn, curr_combo_idx):
         self.block = True

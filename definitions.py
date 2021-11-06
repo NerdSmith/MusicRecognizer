@@ -36,3 +36,6 @@ RECOGNIZE_TIMEOUT = 15
 # history model
 ITEM_SELECTION_CODE = 200
 
+# api
+HOST = "https://nameless-sierra-10297.herokuapp.com"
+API_LINK = HOST + "/api/v1"
