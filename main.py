@@ -131,12 +131,15 @@ class ThreadManager:
 
     def ping_host_block_btn(self):
         self.main_window.get_listen_btn().setEnabled(False)
+        prev_text = self.main_window.get_listen_btn().text()
+        self.main_window.get_listen_btn().setText("API pinging...")
         ping_th = Thread(target=ping_host,
                          args=(),
                          daemon=True,
                          name="ping_th")
         ping_th.start()
         ping_th.join()
+        self.main_window.get_listen_btn().setText(prev_text)
         self.main_window.get_listen_btn().setEnabled(True)
 
     def run_listen_th(self, listen_btn, curr_combo_idx):
