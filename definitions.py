@@ -37,5 +37,5 @@ RECOGNIZE_TIMEOUT = 15
 ITEM_SELECTION_CODE = 200
 
 # api
-HOST = "https://nameless-sierra-10297.herokuapp.com"
+HOST = "http://2.56.240.213:4000"
 API_LINK = HOST + "/api/v1"
